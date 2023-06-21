@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Death Note No Limits</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
+      background-color: #ff9900;
+    }
+    
+    h1 {
+      text-align: center;
+    }
+    
+    form {
+      margin-bottom: 20px;
+      
+    }
+    
+    input, button {
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+    
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    li {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    
+    li h3 {
+      margin: 0;
+    }
+    
+    li p {
+      margin: 5px 0;
+    }
+    
+    .button-group {
+      display: flex;
+      gap: 10px;
+    }
+    
+    button {
+      background-color: #35dc80;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+  </style>
+   <link rel="manifest" href="/manifest.json">
+   <script>
+     if ('serviceWorker' in navigator) {
+       window.addEventListener('load', function() {
+         navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+           console.log('Service Worker registrado com sucesso:', registration.scope);
+         }, function(error) {
+           console.log('Falha ao registrar o Service Worker:', error);
+         });
+       });
+     }
+   </script>
+ </head>
+ <body>
+   <h1>Death Note No Limits</h1>
+ 
+   <form action="/adicionar" method="POST">
+     <input type="text" name="nome" placeholder="Nome" required>
+     <input type="text" name="causa" placeholder="Causa da Morte" required>
+     <input type="text" name="detalhes" placeholder="Detalhes da Morte" required>
+     <button type="submit">Adicionar</button>
+   </form>
+ 
+   <ul>
+     <% deathNotes.forEach((deathNote) => { %>
+       <li>
+         <h3>Nome: <%= deathNote.nome %></h3>
+         <p><strong>Causa da Morte:</strong> <%= deathNote.causa %></p>
+         <p><strong>Detalhes da Morte:</strong> <%= deathNote.detalhes %></p>
+         <div class="button-group">
+           <form action="/excluir/<%= deathNote._id %>" method="POST">
+             <button type="submit">Excluir</button>
+           </form>
+           <form action="/editar/<%= deathNote._id %>" method="GET">
+             <button type="submit">Editar</button>
+           </form>
+         </div>
+       </li>
+     <% }); %>
+   </ul>
+ </body>
+ </html>

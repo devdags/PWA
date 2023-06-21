@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Death Note</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
+      background-color: #ff9900;
+    }
+    
+    h1 {
+      text-align: center;
+    }
+    
+    form {
+      margin-bottom: 20px;
+      
+    }
+    
+    input, button {
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+    
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    li {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    
+    li h3 {
+      margin: 0;
+    }
+    
+    li p {
+      margin: 5px 0;
+    }
+    
+    .button-group {
+      display: flex;
+      gap: 10px;
+    }
+    
+    button {
+      background-color: #35dc80;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Editar Death Note</h1>
+
+  <form action="/atualizar/<%= deathNote._id %>" method="POST">
+    <input type="text" name="nome" placeholder="Nome" value="<%= deathNote.nome %>" required>
+    <input type="text" name="causa" placeholder="Causa da Morte" value="<%= deathNote.causa %>" required>
+    <input type="text" name="detalhes" placeholder="Detalhes da Morte" value="<%= deathNote.detalhes %>" required>
+    <button type="submit">Atualizar</button>
+  </form>
+</body>
+</html>
